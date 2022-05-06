@@ -1,8 +1,18 @@
-<ol class="list-unstyled row">
-  <li *ngFor="let photo of photos" class="col-4">
-    <ap-photo
-      [url]="photo.url"
-      [description]="photo.description">
-    </ap-photo>
-  </li>
-</ol>
+<!-- mt == margin top -->
+<!-- mb == margin bottom -->
+<!-- rounded == deixa a borda arredondada -->
+<!-- autofocus == ja deixa o cursor do mouse ativo quando carrega a página -->
+
+<div class="text-center mt-3 mb-3">
+  <form>
+    <input
+      type="search"
+      class="rounded"
+      placeholder="search..."
+      autofocus
+      (keyup)="filter = $event.target.value"
+    />
+  </form>
+</div>
+
+<ap-photos [photos]="photos | filterByDescription: filter"></ap-photos>
