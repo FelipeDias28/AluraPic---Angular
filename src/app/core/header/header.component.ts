@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { User } from '../user/user';
 import { UserService } from '../user/user.service';
@@ -10,7 +11,15 @@ import { UserService } from '../user/user.service';
 export class HeaderComponent {
   user$: Observable<User>; // Boa prática colocar $ em uma variável do tipo Observable
 
-  constructor(userService: UserService) {
+  constructor(
+    private userService: UserService,
+    private router: Router
+  ) {
     this.user$ = userService.getUser();
+  }
+
+  logout() {
+    this.userService.logout();
+    this.router.navigate([""]) // leva para página de login
   }
 }
